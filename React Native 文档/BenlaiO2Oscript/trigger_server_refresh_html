@@ -1,0 +1,35 @@
+#!/usr/bin/expect -f
+
+#--------------------------------------------
+#登录到服务器，然后触发服务器上的refresh_html脚本
+#
+#参数1：脚本路径
+#参数2：服务器地址
+#参数3：用户名
+#参数4：密码
+#
+#--------------------------------------------
+
+
+
+#参数设置
+set iosPath [lindex $argv 0]
+set host [lindex $argv 1]
+set username [lindex $argv 2]
+set password [lindex $argv 3]
+
+spawn ssh $username@$host
+
+#如果需要输入密码
+expect {
+    "(yes/no)?" {send "yes\r"; exp_continue}
+    "password:" {send "$password\r"}
+}
+
+#切换到文件目录
+expect "#"
+send "cd $iosPath\r"
+
+
+send "sh refresh_html\r"
+expect eof

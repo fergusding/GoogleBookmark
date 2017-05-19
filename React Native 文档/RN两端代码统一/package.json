@@ -1,0 +1,16 @@
+{
+  "name": "BenLai",
+  "version": "2.2.2",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "bundle": "node_modules/.bin/moles-packer --input --entry index.ios.js --output BenLai --common-output . --platform ios --bundle --dev --verbose"
+  },
+  "dependencies": {
+    "react": "15.2.0",
+    "react-native": "0.30.0"
+  },
+  "devDependencies": {
+    "moles-packer": "^0.3.0"
+  }
+}
